@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var questionsIndex = 0;
-    var question = $('#question');
+    var question = 0;
     var choices = $('#selections');
     var nextButton = $('nextButton');
     var correct = 0;
@@ -9,8 +9,8 @@ $(document).ready(function() {
     var i = 0;
     var timeRemaining = 5;
     var timerId;
-    var giphy = ["assets/images/vF7MiG.gif", "assets/images/vTNY-Livestream-Gif.gif", "assets/images/anigif_enhanced-5260-1406732708-8.gif", "assets/images/eclipse.transitGI.gif"]
- 
+    var giphy = [ "assets/images/TNY-Livestream-Gif.gif", "assets/images/anigif_enhanced-5260-1406732708-8.gif", "assets/images/eclipse.transitGIF.gif", "assets/images/Solar.mp4", "assets/images/vF7MiG.gif"];
+    var j = 0;
 // var length1 = allQuestions.length;
 var allQuestions = [
 {
@@ -67,7 +67,10 @@ var allQuestions = [
  /*this function starts the timer*/
    function run() {
    timerId = setInterval(decrement, 1000);
-    $(question).html(allQuestions[i].q + "<br><br>" + allQuestions[i].a + '<br>');
+
+    $('#question').html(allQuestions[i].q + "<br><br>" + allQuestions[i].a + '<br>');
+    i++;
+    console.log(question);
    }
 /*this function has the timer count down*/
   function decrement(){
@@ -76,6 +79,7 @@ var allQuestions = [
     if (timeRemaining === 0 ) {
     timeRemaining = 5;
     getGiphy();
+    console.log('new giphy:' + giphy[j]);
   } 
  }
 // for (i = 0; i < allQuestions.length; i++) {
@@ -91,10 +95,12 @@ var allQuestions = [
 
 //  function getQuestions() {
 //      allQuestions.forEach(function(question, index) {
-//         $(question).html(allQuestions[i].q + "<br><br>" + allQuestions[i].a + '<br>');
+//         $('#question').html(allQuestions[i].q + '<br><br>' + allQuestions[i].a + '<br>');
 //             console.log("Question : " + allQuestions[i].q);
-//             setTimeout(getGiphy,1000*5);  
-//            decrement();
+//             i++;
+//             nextQuestion();
+//            //  setTimeout(getGiphy,1000*5);  
+//            // decrement();
 //         })
 // }
 function getGiphy (){
@@ -103,14 +109,16 @@ function getGiphy (){
     $('#question').hide();
     $('#instructions').hide();
     $('#nextButton').hide();
-    for (j = 0; j < giphy.length; j++) {
-   
-      $('#selections').html(giphy[j]);
-
-   
+    // for (j = 0; j < giphy.length; j++) {
+   // document.write("<img src = '" + giphy[j] + "' width = 200 height = 200/>");      
+      $('#image-page').html("<img src=" + giphy[j] + " width='200px'/>"); 
+      j++;
+      console.log(j + giphy[j]); 
+      setTimeout(nextQuestion,1000*5); 
 };
-   setTimeout(nextQuestion,1000*5); 
-}
+   
+
+
 // //  function pushAnswers() {
 // //         allQuestions.forEach(function(question, index) {
 
@@ -120,12 +128,17 @@ function getGiphy (){
 function nextQuestion() {
   $('#startPage').hide();
   $("#resultsPage").hide();
-  $('#selections').hide();
+  $("#image-page").hide();
+   $('#timer').show();
+  run();
+  decrement();
+  $('#selections').show();
   $('#question').show();
   clearInterval(timerId);
-  // timeRemaining = 5;
-  // run();
-  // decrement();
+  timeRemaining = 5;
+
+   
+ 
   
   // getQuestions();
   // console.log(getQuestions());
