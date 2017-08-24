@@ -1,0 +1,22 @@
+
+  body { 
+	    background-image: url('../images/eclipse-background.jpeg');
+	    background-attachment: fixed;
+	    background-position: center; 
+	}
+
+.jumbotron {
+	position:relative;
+	padding:30px;
+	width: 400px;
+	margin: 200px;
+	left: 320px;
+	bottom: 50px;
+	text-align: left;
+	/*border-radius: 20%;*/
+}
+
+.gameTitle {
+	font-size: 30px;
+	}
+

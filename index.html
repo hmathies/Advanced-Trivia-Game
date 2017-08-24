@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trivia Game</title>
+  <!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Calligraffitti|Playfair+Display|Sedgwick+Ave+Display|Tangerine" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css"> 
+  <!-- jQuery Google CDN -->
+  
+</head>
+ <body>
+  <!-- this div holds the trivia game title, questions, and game stats -->
+ 
+  <!-- <div class="container-fluid"> -->
+   <div class=" jumbotron col-md-8 col-lg-8 col-sm-12 col-xs-12 col-md-offset-2 col-lg-offset-2">
+ <!-- title & start button will be displayed at start of game-->
+    <div id="startPage"> 
+      <h1 class="gameTitle">Solar Eclipse Trivia!</h1>
+      <a class="btn btn-primary btn-lg" href="#" role="button">Start</a>
+    </div>
+<!-- the countdown timer will be displayed above the quiz questions after the button is clicked and will remain at the top until the time is up -->
+        <div id="questionPage"> 
+         <h2 class="gameTitle">Solar Eclipse Trivia!</h1>
+         <h3 id="timer">Time Remaining: 30</h3>
+         <h2 id="question"> </h2>
+         <br>
+         <ul id="selections"></ul>
+         <p id="instructions">click the next button to go to the next question</p>
+
+         <button type="button" id="nextButton">Next</button>
+        </div>
+<!--the user only has a set time to complete the questions. when the timer runs out, the time is up
+ -->     
+    
+    <!-- the game stats will be displayed once the timer is up -->
+         
+           <div id="resultsPage"> 
+              <h2 class="gameTitle">Solar Eclipse Trivia!</h2>
+              <h3 id="correct">Correct: 0</h3>
+              <h3 id="incorrect">Incorrect: 0</h3>
+              <h3 id="unanswered">Unanswered: 0</h3>
+            </div>
+   </div>
+<!--   </div> -->
+
+
+
+    <!-- Bootstrap JS MaxCDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Bootstrap latest compiled and minified CSS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="assets/js/app.js"></script> 
+  </body>
+ </html>

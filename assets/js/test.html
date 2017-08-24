@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+
+        <h1> Harry Potter Trivia </h1> 
+        <div>
+        <h2 id='questionTitle'> </h2>
+        <ul id ='selectionList'> </ul>
+        <p> Click the next button to go to the next question! </p>
+
+        <button type="button" id = nextButton> Next </button>
+        </div>
+        <p id="demo"></p>
+<script>
+
+var allQuestions = [
+{
+    question: "How does Harry manage to breathe underwater during the second task of the Triwizard Tournament?",
+    choices: ["He transfigures into a shark", "He kisses a mermaid", "He eats gillyweed", "He performs a Bubble-Head charm"],
+    correctAnswer: 2
+    
+},
+{
+    question:"What is the name of Fred and George's joke shop?",
+    choices:["Weasley Joke Emporium","Weasley's Wizard Wheezes", "Fred and George's Wonder Emporium", "Zonko's Joke Shop"],
+    correctAnswer: 1
+},
+
+];
+
+//Reference to tags
+var questionTitle = document.getElementById('questionTitle');
+var selectionList = document.getElementById('selectionList');
+var nextButton = document.getElementById('nextButton');
+
+//Initiating some variables
+var i = 0;
+var length1 = allQuestions.length;
+var correctAns = 0;
+
+nextButton.onclick = function() {
+    /*itterate through questions*/    
+    if(i>allQuestions.length -1){/*go to first when reached last*/
+       stop();
+       document.getElementById("demo").innerHTML = correctAns;
+    }    
+    populateQuestion(i);
+    i++;
+    correctAns++;
+};
+function populateQuestion(qNum) {
+    var individualQuestion = allQuestions[i];
+    questionTitle.innerText = individualQuestion.question;
+
+    selectionList.innerHTML = ""; //reset choices list
+    for(key in individualQuestion.choices){
+        var radioBtnName = "question"+i+"_choice";
+        var choiceText = individualQuestion.choices[key];
+        selectionList.appendChild(createLi(radioBtnName,choiceText));
+    }
+}
+function createLi(name, choiceText) {
+        var e = document.createElement('li');
+        var radioHtml = '<input type="radio" name="' + name + '"';    
+        radioHtml += '/>';
+        radioHtml += choiceText;        
+        e.innerHTML = radioHtml;        
+        return e;
+    }
+</script>
+</html>
