@@ -2,12 +2,11 @@ $(document).ready(function() {
     var questionsIndex = 0;
     var question = 0;
     var choices = $('#selections');
-    var nextButton = $('nextButton');
     var correct = 0;
     var incorrect = 0;
     var unanswered = 0;
     var i = 0;
-    var timeRemaining = 5;
+    var timeRemaining = 10;
     var timerId;
     var giphy = [ "assets/images/TNY-Livestream-Gif.gif", "assets/images/anigif_enhanced-5260-1406732708-8.gif", "assets/images/eclipse.transitGIF.gif", "assets/images/Solar.mp4", "assets/images/vF7MiG.gif"];
     var j = 0;
@@ -65,82 +64,72 @@ var allQuestions = [
           run(); 
     });
  /*this function starts the timer*/
-   function run() {
-   timerId = setInterval(decrement, 1000);
-
-    $('#question').html(allQuestions[i].q + "<br><br>" + allQuestions[i].a + '<br>');
+  function run() {
+    var correctAnswer = allQuestions[i].a[allQuestions[i].correct];
+    var html = "";
+    html += allQuestions[i].q + "<br><br>";
+    $.each(allQuestions[i].a, function( index, value ) {
+      if (value === correctAnswer) {
+        html += '<button class="correct" type="button">'+value+'</button>';
+      } else {
+        html += '<button class="incorrect" type="button">'+value+'</button>';
+      }
+    });
+    html += '<br>';
+    $('#question').html(html);
     i++;
+    timerId = setInterval(decrement, 1000);
     console.log(question);
-   }
+  }
 /*this function has the timer count down*/
   function decrement(){
     timeRemaining--;
     $("#timer").html("<p>" + "Time Remaining: " + timeRemaining + "</p>"); 
     if (timeRemaining === 0 ) {
     timeRemaining = 5;
-    getGiphy();
+    // $('.gameTitle').html("Times Up!");
+    // $('#timer').hide();
+    // $('#question').hide();
+
     console.log('new giphy:' + giphy[j]);
   } 
  }
-// for (i = 0; i < allQuestions.length; i++) {
-//     // console.log(allQuestions[0].q + allQuestions[0].a);
-//     getQuestions(allQuestions[0]);
-//     questionsIndex++;
-//     // console.log("questions asked:" + questionsIndex);
-// };
-// for (j = 0; j < giphy.length; j++) {
-//     getGiphy(giphy[0]);
-//     console.log("giphy:" + giphy[j]);
-// };
-
-//  function getQuestions() {
-//      allQuestions.forEach(function(question, index) {
-//         $('#question').html(allQuestions[i].q + '<br><br>' + allQuestions[i].a + '<br>');
-//             console.log("Question : " + allQuestions[i].q);
-//             i++;
-//             nextQuestion();
-//            //  setTimeout(getGiphy,1000*5);  
-//            // decrement();
-//         })
-// }
-function getGiphy (){
-    // clearInterval(timerId);
+//use this to update the next question, add giphys, 
+  $("html").on( "click", ".correct", function() {
     $('#timer').hide();
     $('#question').hide();
-    $('#instructions').hide();
-    $('#nextButton').hide();
+    $('.gameTitle').html("Correct!");
+    $('#giphyImage').html("<img src=" + giphy[j] + " width='200px'/>"); 
+     nextQuestion();
+    //getGiphy();
+   console.log( "you answered it correct");
+  });
+  $( "html" ).on( "click", ".incorrect", function() {
+   console.log( "you answered it incorrect");
+  });
+
+function getGiphy (){
+    // clearInterval(timerId);
+  
     // for (j = 0; j < giphy.length; j++) {
-   // document.write("<img src = '" + giphy[j] + "' width = 200 height = 200/>");      
-      $('#image-page').html("<img src=" + giphy[j] + " width='200px'/>"); 
-      j++;
+   // document.write("<img src = '" + giphy[j] + "' width = 200 height = 200/>"); 
+    // $.each(giphy[j], function(index) {     
+      $('#giphyImage').html("<img src=" + giphy[j] + " width='200px'/>"); 
+     j++;
       console.log(j + giphy[j]); 
       setTimeout(nextQuestion,1000*5); 
-};
-   
-
-
-// //  function pushAnswers() {
-// //         allQuestions.forEach(function(question, index) {
-
-// //         console.log("Answer:" + allQuestions[i].a);
-// //          })}
-// // //         pushAnswers();  
+    // });
+  }
+    
 function nextQuestion() {
   $('#startPage').hide();
   $("#resultsPage").hide();
-  $("#image-page").hide();
+  $("#giphyImage").hide();
    $('#timer').show();
   run();
-  decrement();
   $('#selections').show();
   $('#question').show();
   clearInterval(timerId);
-  timeRemaining = 5;
-
-   
- 
-  
-  // getQuestions();
-  // console.log(getQuestions());
+  timeRemaining = 10;
 }
 });
