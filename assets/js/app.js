@@ -1,3 +1,5 @@
+//Built by Heather Mathies August 2017
+//when the page loads...
 $(document).ready(function() {
     var questionsIndex = 0;
     var question = 0;
@@ -8,7 +10,7 @@ $(document).ready(function() {
     var i = 0;
     var timeRemaining = 10;
     var timerId;
-    var giphy = [ "assets/images/TNY-Livestream-Gif.gif", "assets/images/anigif_enhanced-5260-1406732708-8.gif", "assets/images/eclipse.transitGIF.gif", "assets/images/Solar.mp4", "assets/images/vF7MiG.gif"];
+    var giphy = [ "assets/images/TNY-Livestream-Gif.gif", "assets/images/anigif_enhanced-5260-1406732708-8.gif", "assets/images/eclipse.transitGIF.gif", "assets/images/vF7MiG.gif"];
     var j = 0;
 // var length1 = allQuestions.length;
 var allQuestions = [
@@ -42,94 +44,159 @@ var allQuestions = [
     a:["60 minutes","30 minutes", "3 minutes", "24 hours"],
     correct:2
 },
-{
-    q:"Which lunar phase does a solar eclipse happen in?",
-    a:["Full Moon","Half Moon", "New Moon", "Crescent Moon"],
-    correct:2
-},
-{
-    q:"Which lunar phase does a solar eclipse happen in?",
-    a:["Full Moon","Half Moon", "New Moon", "Crescent Moon"],
-    correct:2
-},
+// {
+//     q:"Which lunar phase does a solar eclipse happen in?",
+//     a:["Full Moon","Half Moon", "New Moon", "Crescent Moon"],
+//     correct:2
+// },
+// {
+//     q:"Which lunar phase does a solar eclipse happen in?",
+//     a:["Full Moon","Half Moon", "New Moon", "Crescent Moon"],
+//     correct:2
+// },
 ];
-/*when the page loads*/
+
+  /*when the page loads*/
     $("#questionPage").hide();
     $("#resultsPage").hide();
-/*when the start button is clicked*/
+  /*when the start button is clicked*/
     $('.btn').on("click", function() {
           $("#startPage").hide();
           $("#questionPage").show();
-          // getQuestions();
           run(); 
     });
- /*this function starts the timer*/
+ /*this function starts the timer and checks the value of the user answers*/
   function run() {
+    timerId = setInterval(decrement, 1000);
+    // timeRemaining = 30;
     var correctAnswer = allQuestions[i].a[allQuestions[i].correct];
     var html = "";
     html += allQuestions[i].q + "<br><br>";
+
     $.each(allQuestions[i].a, function( index, value ) {
       if (value === correctAnswer) {
-        html += '<button class="correct" type="button">'+value+'</button>';
+        html += '<button class="correct" type="button">'+ value +'</button>';
+        $("#correct").html("<h3>" + "Correct: " + correct + "</h3>");
+        
+
+        console.log(correct);
       } else {
         html += '<button class="incorrect" type="button">'+value+'</button>';
+        $("#incorrect").html("<h3>" + "Incorrect: " + incorrect + "</h3>");     
       }
     });
     html += '<br>';
     $('#question').html(html);
     i++;
-    timerId = setInterval(decrement, 1000);
-    console.log(question);
+  
+    // if (allQuestions[i].q === undefined) {
+    //   stop();
+    // }
   }
 /*this function has the timer count down*/
   function decrement(){
-    timeRemaining--;
-    $("#timer").html("<p>" + "Time Remaining: " + timeRemaining + "</p>"); 
-    if (timeRemaining === 0 ) {
-    timeRemaining = 5;
-    // $('.gameTitle').html("Times Up!");
-    // $('#timer').hide();
-    // $('#question').hide();
 
-    console.log('new giphy:' + giphy[j]);
-  } 
- }
+    timeRemaining--;
+     $("#timer").html("<h3>" + "Time Remaining: " + timeRemaining + "</h3>"); 
+
+     if (timeRemaining === 0 ) {
+        $("#questionPage").hide();
+         $("#giphyPage").show();
+        $('#c-or-i').html("Times Up!");
+        $('#giphyImage').html("<img src=" + giphy[j] + " width='200px'/>");
+        console.log(giphy[j]);
+        clearInterval(timerId);
+        setTimeout(nextQuestion,1000*5);
+        timeRemaining = 10;
+
+    } 
+
+  }
+
 //use this to update the next question, add giphys, 
   $("html").on( "click", ".correct", function() {
-    $('#timer').hide();
-    $('#question').hide();
-    $('.gameTitle').html("Correct!");
-    $('#giphyImage').html("<img src=" + giphy[j] + " width='200px'/>"); 
-     nextQuestion();
-    //getGiphy();
-   console.log( "you answered it correct");
-  });
-  $( "html" ).on( "click", ".incorrect", function() {
-   console.log( "you answered it incorrect");
+        correct++;
+        $('#questionPage').hide();
+        $("#giphyPage").show();
+        $('#c-or-i').html("Correct!");
+        $('#giphyImage').html("<img src=" + giphy[j] + " width='200px'/>"); 
+          // getGiphy();
+         getGiphy();
+         giphy++;
+         nextQuestion();
   });
 
-function getGiphy (){
-    // clearInterval(timerId);
+  $("html").on( "click", ".incorrect", function() {
+        incorrect++;
+        $('#questionPage').hide();
+        $("#giphyPage").show();
+        $('#c-or-i').html("Nope, that's incorrect!");
+        $('#giphyImage').html("<img src=" + giphy[j] + " width='200px'/>"); 
+        getGiphy();
+        giphy++;
+        nextQuestion();
+        
+  });
+
+  function getGiphy (){
   
-    // for (j = 0; j < giphy.length; j++) {
-   // document.write("<img src = '" + giphy[j] + "' width = 200 height = 200/>"); 
-    // $.each(giphy[j], function(index) {     
-      $('#giphyImage').html("<img src=" + giphy[j] + " width='200px'/>"); 
+    for (j = 0; j < giphy.length; j++) {
+              $('#giphyImage').html("<img src = '" + giphy[j] + "' width = 200 height = 200/>"); 
+      // $('#giphyImage').html("<img src=" + giphy[j] + " width='200px'/>"); 
      j++;
-      console.log(j + giphy[j]); 
-      setTimeout(nextQuestion,1000*5); 
-    // });
+      console.log(giphy[j]); 
+      setTimeout(nextQuestion,1000*5);
+    // $.each(giphy[j], function(index) {     
+    //   $('#giphyImage').html("<img src = '" + giphy[j] + "' width = 200 height = 200/>"); 
+    //   // $('#giphyImage').html("<img src=" + giphy[j] + " width='200px'/>"); 
+    //  j++;
+    //   console.log(giphy[j]); 
+    //   setTimeout(nextQuestion,1000*5);
+    //    });
+   
+    }
   }
     
-function nextQuestion() {
-  $('#startPage').hide();
-  $("#resultsPage").hide();
-  $("#giphyImage").hide();
-   $('#timer').show();
-  run();
-  $('#selections').show();
-  $('#question').show();
-  clearInterval(timerId);
-  timeRemaining = 10;
-}
+  function nextQuestion() {
+      $('#startPage').hide();
+      $("#resultsPage").hide();
+      $("#giphyPage").hide();
+      $('#questionPage').show();
+      clearInterval(timerId);
+      run();
+      // if (allQuestions[i] === undefined) {
+      //   stop();
+        
+      // }  
+  }
+
+  function checkAnswers() {
+
+  }
+
+  function stop() {
+      clearInterval(timerId);
+      displayResults(); 
+  }
+
+   // displaying the results to the screen
+  function displayResults () {
+     
+      $("#resultsPage").show();
+      $('#questionPage').hide();
+      setTimeout(reset,1000*10);
+  }
+  //this function resets the trivia game
+  function reset() {
+      $('#startPage').show();
+      $("#resultsPage").hide();
+      $("#questionPage").hide();
+      clearInterval(timerId);
+      timeRemaining = 10;
+      timerId;
+      correct = 0;
+      incorrect = 0;
+      unanswered = 0; 
+   }  
+
 });
