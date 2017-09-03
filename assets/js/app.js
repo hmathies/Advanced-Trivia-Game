@@ -93,7 +93,7 @@ $(document).ready(function() {
             $("#questionPage").hide();
             $("#giphyPage").show();
             $('#c-or-i').html("Times Up!");
-            $('#giphyImage').html("<img src=" + giphy[0] + " width='200px'/>");
+            $('#giphyImage').html("<img src=" + giphy[0] + " width='350px'/>");
             console.log(giphy[0]);
             clearInterval(timerId);
             setTimeout(nextQuestion, 1000 * 5);
@@ -108,8 +108,8 @@ $(document).ready(function() {
         correct++;
         $('#questionPage').hide();
         $("#giphyPage").show();
-        $('#c-or-i').html("Correct!");
-        $('#giphyImage').html("<img src=" + giphy[3] + " width='200px'/>");
+        $('#c-or-i').html("Yup, that's correct!");
+        $('#giphyImage').html("<img src=" + giphy[3] + " width='350px'/>");
         clearInterval(timerId);
         setTimeout(nextQuestion, 1000 * 5);
     });
@@ -119,7 +119,7 @@ $(document).ready(function() {
         $('#questionPage').hide();
         $("#giphyPage").show();
         $('#c-or-i').html("Nope, that's incorrect!");
-        $('#giphyImage').html("<img src=" + giphy[1] + " width='200px'/>");
+        $('#giphyImage').html("<img src=" + giphy[1] + " width='350px'/>");
         clearInterval(timerId);
         setTimeout(nextQuestion, 1000 * 5);
 
