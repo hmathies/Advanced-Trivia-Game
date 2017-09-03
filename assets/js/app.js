@@ -88,10 +88,6 @@ var allQuestions = [
     html += '<br>';
     $('#question').html(html);
     i++;
-  
-    // if (allQuestions[i].q === undefined) {
-    //   stop();
-    // }
   }
 /*this function has the timer count down*/
   function decrement(){
@@ -101,16 +97,16 @@ var allQuestions = [
 
      if (timeRemaining === 0 ) {
         $("#questionPage").hide();
-         $("#giphyPage").show();
+        $("#giphyPage").show();
         $('#c-or-i').html("Times Up!");
-        $('#giphyImage').html("<img src=" + giphy[j] + " width='200px'/>");
+        $('#giphyImage').html("<img src=" + giphy[0] + " width='200px'/>");
         console.log(giphy[j]);
         clearInterval(timerId);
         setTimeout(nextQuestion,1000*5);
         timeRemaining = 10;
-
+        unanswered++;
+        $("#unanswered").html("<h3>" + "Unanswered: " + unanswered + "</h3>"); 
     } 
-
   }
 
 //use this to update the next question, add giphys, 
@@ -119,11 +115,9 @@ var allQuestions = [
         $('#questionPage').hide();
         $("#giphyPage").show();
         $('#c-or-i').html("Correct!");
-        $('#giphyImage').html("<img src=" + giphy[j] + " width='200px'/>"); 
-          // getGiphy();
-         getGiphy();
-         giphy++;
-         nextQuestion();
+        $('#giphyImage').html("<img src=" + giphy[3] + " width='200px'/>"); 
+        clearInterval(timerId);
+        setTimeout(nextQuestion,1000*5);
   });
 
   $("html").on( "click", ".incorrect", function() {
@@ -131,21 +125,21 @@ var allQuestions = [
         $('#questionPage').hide();
         $("#giphyPage").show();
         $('#c-or-i').html("Nope, that's incorrect!");
-        $('#giphyImage').html("<img src=" + giphy[j] + " width='200px'/>"); 
-        getGiphy();
-        giphy++;
-        nextQuestion();
+        $('#giphyImage').html("<img src=" + giphy[1] + " width='200px'/>"); 
+        clearInterval(timerId);
+        setTimeout(nextQuestion,1000*5);
+       
         
   });
 
-  function getGiphy (){
+  // function getGiphy (){
   
-    for (j = 0; j < giphy.length; j++) {
-              $('#giphyImage').html("<img src = '" + giphy[j] + "' width = 200 height = 200/>"); 
-      // $('#giphyImage').html("<img src=" + giphy[j] + " width='200px'/>"); 
-     j++;
-      console.log(giphy[j]); 
-      setTimeout(nextQuestion,1000*5);
+  //   for (j = 0; j < giphy.length; j++) {
+  //             $('#giphyImage').html("<img src = '" + giphy[j] + "' width = 200 height = 200/>"); 
+  //     // $('#giphyImage').html("<img src=" + giphy[j] + " width='200px'/>"); 
+  //    j++;
+  //     console.log(giphy[j]); 
+  //     setTimeout(nextQuestion,1000*5);
     // $.each(giphy[j], function(index) {     
     //   $('#giphyImage').html("<img src = '" + giphy[j] + "' width = 200 height = 200/>"); 
     //   // $('#giphyImage').html("<img src=" + giphy[j] + " width='200px'/>"); 
@@ -154,8 +148,8 @@ var allQuestions = [
     //   setTimeout(nextQuestion,1000*5);
     //    });
    
-    }
-  }
+  //   }
+  // }
     
   function nextQuestion() {
       $('#startPage').hide();
@@ -164,15 +158,12 @@ var allQuestions = [
       $('#questionPage').show();
       clearInterval(timerId);
       run();
-      // if (allQuestions[i] === undefined) {
-      //   stop();
+      if (allQuestions[i] === undefined) {
+        stop();
         
-      // }  
+      }  
   }
 
-  function checkAnswers() {
-
-  }
 
   function stop() {
       clearInterval(timerId);
