@@ -3,9 +3,9 @@
 	    background-image: url('../images/eclipse-background.jpeg');
 	    background-attachment: fixed;
 	    background-position: center; 
-	}
+  }
 
-.jumbotron {
+  .jumbotron {
 	position:relative;
 	padding:30px;
 	width: 400px;
@@ -14,11 +14,11 @@
 	bottom: 50px;
 	text-align: left;
 	
-}
+  }
 
-.gameTitle {
+  .gameTitle {
 	font-size: 30px;
-	}
+  }
 	
 
 

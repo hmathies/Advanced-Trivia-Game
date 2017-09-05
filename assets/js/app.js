@@ -14,7 +14,8 @@ $(document).ready(function() {
     var j = 0;
 
     /*-----------------------these questions will be dyanimcally displayed one at a time----------------------------------------*/
-    var allQuestions = [{
+    var allQuestions = [
+        {
             q: "What year was the last solar eclipse?",
             a: ["1978", "1979", "1980", "1981"],
             correct: 1
@@ -42,12 +43,12 @@ $(document).ready(function() {
         {
             q:"What year was the last total solar eclipse seen exclusively over the continental United States?",
             a:["1980","1930", "1880", "1830"],
-            correct:2
+            correct: 2
         },
         {
             q:"Totality is the only time when one can see the corona, which is the Sun's what?",
             a:["photospere","atmosphere", "sunspots", "core"],
-            correct:1
+            correct: 1
         },
     ];
 
@@ -67,9 +68,9 @@ $(document).ready(function() {
     function run() {
             clearInterval(timerId);
             timerId = setInterval(decrement, 1000);
-            // timeRemaining = 30;
             var correctAnswer = allQuestions[i].a[allQuestions[i].correct];
             var html = "";
+
             html += allQuestions[i].q + "<br><br>";
 
             $.each(allQuestions[i].a, function(index, value) {
@@ -77,14 +78,22 @@ $(document).ready(function() {
                     html += '<button class="correct" type="button">' + value + '</button>';
                     $("#correct").html("<h3>" + "Correct: " + correct + "</h3>");
 
-                } else {
+                } else  {
                     html += '<button class="incorrect" type="button">' + value + '</button>';
                     $("#incorrect").html("<h3>" + "Incorrect: " + incorrect + "</h3>");
+                
                 }
             });
             html += '<br>';
             $('#question').html(html);
             i++;
+            console.log(i);
+              if (i > allQuestions.length-1) {
+            stop();
+            console.log('at the end of the questions');
+        }
+        
+
         }
 
     /*--------------this has the timer count down and says what to do if the user doesn't answer before 
@@ -94,6 +103,7 @@ $(document).ready(function() {
         timeRemaining--;
         $("#timer").html("<h3>" + "Time Remaining: " + timeRemaining + "</h3>");
 
+        
         if (timeRemaining === 0) {
             $("#questionPage").hide();
             $("#giphyPage").show();
@@ -105,6 +115,12 @@ $(document).ready(function() {
             unanswered++;
             $("#unanswered").html("<h3>" + "Unanswered: " + unanswered + "</h3>");
         }
+        // if (i > allQuestions.length-1) {
+        //     stop();
+        //     console.log('at the end of the questions');
+        // }
+
+       
     }
 
     /*-----this onclick event detects the correct user answer----*/
@@ -117,7 +133,8 @@ $(document).ready(function() {
         $('#c-or-i').html("Yup, that's correct!");
         $('#giphyImage').html("<img src=" + giphy[2] + " width='350px'/>");
         setTimeout(nextQuestion, 1000 * 5);
-        timeRemaining = 30;
+        timeRemaining = 30; 
+
     });
 
     /*-----this onclick event detects the incorrect user answer----*/
@@ -142,10 +159,7 @@ $(document).ready(function() {
         $('#questionPage').show();
         clearInterval(timerId);
         run();
-        if (allQuestions[i] === null) {
-            stop();
-
-        }
+       
     }
 
    /*---------this stops the timer and displays the results----*/
@@ -161,7 +175,7 @@ $(document).ready(function() {
         $("#resultsPage").show();
         $('#questionPage').hide();
         setTimeout(reset, 1000 * 10);
-        }
+    }
 
     /*-----------this function resets the trivia game----------*/
     function reset() {
