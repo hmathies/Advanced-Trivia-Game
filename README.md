@@ -1,6 +1,6 @@
 Technologies Used:
 
-Javascript, HTML, CSS, Giphy API
+Javascript, JQuery, HTML, Bootstrap, CSS
 
 Directions:
 1. Click the start button to begin.
