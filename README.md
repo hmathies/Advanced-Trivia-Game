@@ -1,6 +1,6 @@
 Technologies Used:
 
-Javascript, JQuery, HTML, Bootstrap, CSS
+Javascript, JQuery, HTML, Bootstrap
 
 Directions:
 1. Click the start button to begin.
@@ -10,8 +10,6 @@ Directions:
 
 ![A Solar Eclipse](assets/images/eclipse-background.jpeg?raw=true "Solar Eclipse")
 
-
-![Screenshot](screenshot.png)  https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_qirdoJwoo8JsN9vxWLMsxAWg1-V0Lun4QeB_owsa1HuDEvpRbw
 
 ![Screenshot](solareclipse2.jpeg)
 
