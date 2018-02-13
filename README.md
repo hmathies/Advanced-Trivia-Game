@@ -2,7 +2,7 @@
 
 Javascript, JQuery, HTML, Bootstrap
 
-This is a triva game based on solar eclipses.  The solar eclipse data used for this game was found on https://eclipse.aas.org/resources/images-videos#other and https://svs.gsfc.nasa.gov/.
+This is a trivia game based on solar eclipses.  The solar eclipse data used for this game was found on https://eclipse.aas.org/resources/images-videos#other and https://svs.gsfc.nasa.gov/.
 
 <hr>
 

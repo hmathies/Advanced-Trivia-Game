@@ -75,35 +75,35 @@ $(document).ready(function() {
 
             $.each(allQuestions[i].a, function(index, value) {
                 if (value === correctAnswer) {
-                    html += '<button class="correct" type="button">' + value + '</button>';
+                    html += '<button class="correct" style="align-items: center; display: flex; margin: 5px; text-align: center" type="button">' + value + '</button>';
                     $("#correct").html("<h3>" + "Correct: " + correct + "</h3>");
 
                 } else  {
-                    html += '<button class="incorrect" type="button">' + value + '</button>';
+                    html += '<button class="incorrect" style="align-items: center; display: flex; margin: 5px; text-align: center" type="button">' + value + '</button>';
                     $("#incorrect").html("<h3>" + "Incorrect: " + incorrect + "</h3>");
-                
+
                 }
             });
             html += '<br>';
             $('#question').html(html);
             i++;
-            console.log(i);
+
               if (i > allQuestions.length-1) {
             stop();
-            console.log('at the end of the questions');
-        }
-        
 
         }
 
-    /*--------------this has the timer count down and says what to do if the user doesn't answer before 
+
+        }
+
+    /*--------------this has the timer count down and says what to do if the user doesn't answer before
     the timer runs out--------------------------------------*/
     function decrement() {
 
         timeRemaining--;
-        $("#timer").html("<h3>" + "Time Remaining: " + timeRemaining + "</h3>");
+        $("#timer").html("<h4>" + "Time Remaining: " + timeRemaining + "</h4>");
 
-        
+
         if (timeRemaining === 0) {
             $("#questionPage").hide();
             $("#giphyPage").show();
@@ -115,17 +115,13 @@ $(document).ready(function() {
             unanswered++;
             $("#unanswered").html("<h3>" + "Unanswered: " + unanswered + "</h3>");
         }
-        // if (i > allQuestions.length-1) {
-        //     stop();
-        //     console.log('at the end of the questions');
-        // }
 
-       
+
     }
 
     /*-----this onclick event detects the correct user answer----*/
     $("html").on("click", ".correct", function() {
-        
+
         correct++;
         clearInterval(timerId);
         $('#questionPage').hide();
@@ -133,13 +129,13 @@ $(document).ready(function() {
         $('#c-or-i').html("Yup, that's correct!");
         $('#giphyImage').html("<img src=" + giphy[2] + " width='350px'/>");
         setTimeout(nextQuestion, 1000 * 5);
-        timeRemaining = 30; 
+        timeRemaining = 30;
 
     });
 
     /*-----this onclick event detects the incorrect user answer----*/
     $("html").on("click", ".incorrect", function() {
-        
+
         incorrect++;
         clearInterval(timerId);
         $('#questionPage').hide();
@@ -152,26 +148,26 @@ $(document).ready(function() {
 
     /*------this displays the next question to the user------*/
     function nextQuestion() {
-        
+
         $('#startPage').hide();
         $("#resultsPage").hide();
         $("#giphyPage").hide();
         $('#questionPage').show();
         clearInterval(timerId);
         run();
-       
+
     }
 
    /*---------this stops the timer and displays the results----*/
     function stop() {
-        
+
         clearInterval(timerId);
         displayResults();
     }
 
   /*-------------displaying the results to the screen---------*/
     function displayResults() {
-            
+
         $("#resultsPage").show();
         $('#questionPage').hide();
         setTimeout(reset, 1000 * 10);
@@ -179,7 +175,7 @@ $(document).ready(function() {
 
     /*-----------this function resets the trivia game----------*/
     function reset() {
-        
+
         $('#startPage').show();
         $("#resultsPage").hide();
         $("#questionPage").hide();
@@ -192,3 +188,4 @@ $(document).ready(function() {
     }
 
 });
+/*=======================END OF FILE===============================*/

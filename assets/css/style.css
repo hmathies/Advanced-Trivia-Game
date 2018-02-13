@@ -1,24 +1,46 @@
+/*===========Heather Mathies 2017=======================*/
+body {
+    background-image: url('../images/eclipse-background.jpeg');
+    background-attachment: fixed;
+    background-position: center;
+}
+html, body, .main-div {
+    height: 100%;
+    color: white;
+}
+.gameTitle {
+    margin-top: 1.2em;
+    font-size: 30px;
+    text-align: center;
+}
+#timer{
+  text-align: center;
+}
 
-  body { 
-	    background-image: url('../images/eclipse-background.jpeg');
-	    background-attachment: fixed;
-	    background-position: center; 
-  }
+#questionPage{
 
-  .jumbotron {
-	position:relative;
-	padding:30px;
-	width: 400px;
-	margin: 200px;
-	left: 320px;
-	bottom: 50px;
-	text-align: left;
-	
-  }
+  max-width: 400px;
 
-  .gameTitle {
-	font-size: 30px;
-  }
-	
+}
+#question{
+
+  margin: 5px;
+  text-align: center;
+}
+
+button {
+  background-color: blue;
+}
+#c-or-i {
+  text-align: center;
+}
+.main-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+
+}
 
 
+  /*=======================END OF FILE===============================*/
