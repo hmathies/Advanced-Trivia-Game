@@ -7,9 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Trivia Game
   </title>
-  <!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Calligraffitti|Playfair+Display|Sedgwick+Ave+Display|Tangerine" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <!-- jQuery Google CDN -->
 </head>
@@ -31,25 +32,22 @@
       </h2>
       <h4 id="timer">Time Remaining: 30
         </h4>
-      <h2 id="question">
-        </h2>
-      <br>
-      <ul id="selections">
-      </ul>
+      <h3 id="question" class="animated flash">
+      </h3>
     </div>
     <!--the user only has a set time to complete the questions. when the timer runs out, the time is up
 -->
-    <div id="giphyPage">
+    <div id="giphyPage" class="animated lightSpeedIn">
       <h3 id="c-or-i">
         </h3>
-      <div id="giphyImage" src="">
+      <div id="giphyImage">
       </div>
     </div>
     <!-- the game stats will be displayed once the timer is up -->
     <div id="resultsPage">
       <h2 class="gameTitle">Solar Eclipse Trivia!
         </h2>
-      <h3 id="correct">Correct: 0
+      <h3 id="correct" class="animated tada">Correct: 0
         </h3>
       <h3 id="incorrect">Incorrect: 0
         </h3>
