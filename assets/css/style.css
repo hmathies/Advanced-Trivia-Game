@@ -1,7 +1,7 @@
 /*===========Heather Mathies 2017=======================*/
 body {
     background-image: url('../images/eclipse-background.jpeg');
-    background-attachment: fixed;
+    background-attachment: relative;
     background-position: center;
 }
 html, body, .main-div {
@@ -12,9 +12,13 @@ html, body, .main-div {
     margin-top: 1.2em;
     font-size: 30px;
     text-align: center;
+
+    z-index: 999;
 }
 #timer{
   text-align: center;
+
+  z-index: 999;
 }
 
 #questionPage{
@@ -22,6 +26,8 @@ html, body, .main-div {
   display: inline-block;
   align-items: center;
   max-width: 400px;
+  opacity: 1;
+  z-index: 999;
 
 }
 #question{
@@ -48,5 +54,40 @@ button {
 
 }
 
+/*===========================MEDIA QUERIES============================*/
+@media only screen and (max-width: 767px) {
+    body {
+        background-image: url('../images/sun_earth_eclipse.jpg');
+        background-attachment: relative;
+        background-position: center;
+        z-index: 1;
+
+    }
+    .main-div {
+        position: relative;
+        z-index: 999;
+
+    }
+
+
+  }
+
+
+@media only screen and (max-width: 440px) {
+    body {
+        background-image: url('../images/sun_earth_eclipse.jpg');
+        background-attachment: relative;
+        background-position: center;
+        z-index: 1;
+
+    }
+    .main-div {
+        position: relative;
+        z-index: 999;
+
+    }
+
+
+  }
 
   /*=======================END OF FILE===============================*/
