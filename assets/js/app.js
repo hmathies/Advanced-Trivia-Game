@@ -44,12 +44,7 @@ $(document).ready(function() {
             q:"What year was the last total solar eclipse seen exclusively over the continental United States?",
             a:["1980","1930", "1880", "1830"],
             correct: 2
-        },
-        {
-            q:"Totality is the only time when one can see the corona, which is the Sun's what?",
-            a:["photospere","atmosphere", "sunspots", "core"],
-            correct: 1
-        },
+        }
     ];
 
     /*------when the page first loads------*/
@@ -75,11 +70,11 @@ $(document).ready(function() {
 
             $.each(allQuestions[i].a, function(index, value) {
                 if (value === correctAnswer) {
-                    html += '<button class="correct" style="align-items: center; display: flex; margin: 5px; text-align: center" type="button">' + value + '</button>';
+                    html += '<button class="correct" type="button">' + value + '</button>';
                     $("#correct").html("<h3>" + "Correct: " + correct + "</h3>");
 
                 } else  {
-                    html += '<button class="incorrect" style="align-items: center; display: flex; margin: 5px; text-align: center" type="button">' + value + '</button>';
+                    html += '<button class="incorrect" type="button">' + value + '</button>';
                     $("#incorrect").html("<h3>" + "Incorrect: " + incorrect + "</h3>");
 
                 }
@@ -110,7 +105,7 @@ $(document).ready(function() {
             $('#c-or-i').html("Times Up!");
             $('#giphyImage').html("<img src=" + giphy[0] + " width='350px'/>");
             clearInterval(timerId);
-            setTimeout(nextQuestion, 1000 * 5);
+            setTimeout(nextQuestion, 1000 * 3);
             timeRemaining = 30;
             unanswered++;
             $("#unanswered").html("<h3>" + "Unanswered: " + unanswered + "</h3>");
@@ -185,6 +180,7 @@ $(document).ready(function() {
         correct = 0;
         incorrect = 0;
         unanswered = 0;
+        run();
     }
 
 });
